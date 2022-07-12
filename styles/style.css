@@ -1,0 +1,116 @@
+@font-face {
+    font-family: "Neo Sans Pro";
+    font-weight: normal;
+    font-style: normal;
+    src: url("../fonts/NeoSansPro-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Neo Sans Pro";
+    font-weight: bold;
+    font-style: normal;
+    src: url("../fonts/NeoSansPro-Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Neo Sans Pro";
+    font-weight: normal;
+    font-style: italic;
+    src: url("../fonts/NeoSansPro-Italic.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Neo Sans Pro";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../fonts/NeoSansPro-BoldItalic.ttf") format("truetype");
+}
+body {
+    font-family: "Neo Sans Pro", sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    background-image: linear-gradient(to top, #66CDAA, #5F9EA0, #008B8B, #2F4F4F, #000000);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.block {
+    width: 70%;
+    background: #00000080;
+    padding: 32px;
+    margin: 32px auto 32px auto;
+    border-radius: 32px;
+}
+#head, h1 {
+    text-align: center;
+}
+#okay {
+    animation-name: what;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+#okay:hover {
+    transform: scale(110%);
+}
+@keyframes what {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+label {
+    line-height: 50px;
+}
+label > select, label > input {
+    margin-left: 32px;
+    background: #000000;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    font-family: "Neo Sans Pro", sans-serif;
+    border: none;
+    border-radius: 16px;
+    width: 128px;
+}
+select:focus {
+    border: none;
+}
+a {
+    color: #008B8B;
+    text-decoration: none;
+    transition-duration: 0.5s;
+}
+a:visited {
+    color: #5F9EA0;
+    transition-duration: 0.5s;
+}
+a:hover, a:active {
+    color: #66CDAA;
+    text-decoration: none;
+    transition-duration: 0.5s;
+}
+.not-okay td {
+    width: 50%;
+}
+#submit {
+    background: #008B8B;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    font-family: "Neo Sans Pro", sans-serif;
+    border: none;
+    border-radius: 16px;
+    padding: 16px;
+    width: 128px;
+    transition-duration: 0.5s;
+}
+#submit:hover, #submit:active {
+    background: #66CDAA;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
