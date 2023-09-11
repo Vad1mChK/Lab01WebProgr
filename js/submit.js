@@ -40,20 +40,6 @@ function cleanData() {
     });
 }
 
-function fetchData() {
-    $.ajax({
-        url: 'fetcher.php',
-        method: 'HEAD',
-        dataType: 'json',
-        success: function(data) {
-            updateTable(data)
-        },
-        error: function() {
-            alert("При обработке запроса на сервере произошла ошибка.");
-        }
-    });
-}
-
 // Function to handle adding the placeholder
 function addPlaceholderRow(table) {
     const row = $('<tr>').appendTo(table);

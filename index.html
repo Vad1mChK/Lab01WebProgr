@@ -39,6 +39,7 @@
 
             * {
                 --custom-padding: 64px;
+                --PI: 3.14159265358979323;
             }
 
             body {
@@ -174,7 +175,7 @@
                 font-family: inherit;
                 font-size: inherit;
                 color: inherit;
-                transition-duration: 314.159265358979323ms;
+                transition-duration: calc(100ms * var(--PI));
                 transition-timing-function: ease-in-out;
             }
 
@@ -191,7 +192,6 @@
         </style>
         <link rel="icon" href="favicon.png"/>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="js/error_display.js"></script>
         <script type="text/javascript" src="js/validate.js"></script>
         <script type="text/javascript" src="js/submit.js"></script>
     </head>
@@ -207,7 +207,7 @@
                 <li>вариант <b>265464</b></li>
             </ul>
             <p>
-                <b>Принял</b>: преподаватель Кулинич Ярослав <a title="здесь должна была быть шутка про &laquo;Люк, я твой отец&raquo;, но её не будет">Вадим</a>ович
+                <b>Принял</b>: преподаватель Кулинич Ярослав <b>Вадим</b>ович
             </p>
         </header>
         <div class="black-box">
@@ -273,7 +273,7 @@
             <ul>
                 <li>Для расположения текстовых и графических элементов необходимо использовать блочную верстку.</li>
                 <li>Данные формы должны передаваться на обработку посредством 
-                    <a title="Гет — один из жанров фанфикшена, используемый на «Книге фанфиков». По определению ресурса: — в центре истории романтические и/или сексуальные отношения между мужчиной и женщиной.">
+                    <a title="Гет — один из жанров фанфикшена, используемый на &laquo;Книге фанфиков&raquo;. По определению ресурса: в центре истории романтические и/или сексуальные отношения между мужчиной и женщиной.">
                         GET
                     </a>-запроса.</li>
                 <li>Таблицы стилей должны располагаться в самом веб-документе.</li>
