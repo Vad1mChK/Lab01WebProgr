@@ -1,302 +1,335 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="utf-8"/>
-        <title>Лабораторная работа &numero; 1 по дисциплине &laquo;Веб-программирование&raquo;</title>
-        <style>
-            @font-face {
-                font-family: JBRMono;
-                src: url(fonts/JetBrainsMono-Regular.ttf);
-                font-weight: normal;
-                font-style: normal;
-            }
+<head>
+    <meta charset="utf-8"/>
+    <title>Лабораторная работа &numero; 1 по дисциплине &laquo;Веб-программирование&raquo;</title>
+    <style>
+        @font-face {
+            font-family: JBRMono;
+            src: url(fonts/JetBrainsMono-Regular.ttf);
+            font-weight: normal;
+            font-style: normal;
+        }
 
-            @font-face {
-                font-family: JBRMono;
-                src: url(fonts/JetBrainsMono-Bold.ttf);
-                font-weight: bold;
-                font-style: normal;
-            }
+        @font-face {
+            font-family: JBRMono;
+            src: url(fonts/JetBrainsMono-Bold.ttf);
+            font-weight: bold;
+            font-style: normal;
+        }
 
-            @font-face {
-                font-family: JBRMono;
-                src: url(fonts/JetBrainsMono-Italic.ttf);
-                font-weight: normal;
-                font-style: italic;
-            }
+        @font-face {
+            font-family: JBRMono;
+            src: url(fonts/JetBrainsMono-Italic.ttf);
+            font-weight: normal;
+            font-style: italic;
+        }
 
-            @font-face {
-                font-family: JBRMono;
-                src: url(fonts/JetBrainsMono-BoldItalic.ttf);
-                font-weight: bold;
-                font-style: italic;
-            }
+        @font-face {
+            font-family: JBRMono;
+            src: url(fonts/JetBrainsMono-BoldItalic.ttf);
+            font-weight: bold;
+            font-style: italic;
+        }
 
-            @font-face {
-                font-family: Handwriting;
-                src: url(fonts/Informer.ttf);
-            }
+        @font-face {
+            font-family: Handwriting;
+            src: url(fonts/Informer.ttf);
+        }
 
-            * {
-                --custom-padding: 64px;
-            }
+        * {
+            --custom-padding: 64px;
+        }
 
-            body {
-                color: #f4f4f4;
-                font-family: JBRMono, 'Courier New', Courier, monospace;
-                background-color: #069d9f;
-                background-image: linear-gradient(to bottom, #101010, #0a2441, #2653a7, #069d9f);
-                background-attachment: fixed;
-            }
+        body {
+            color: #f4f4f4;
+            font-family: JBRMono, 'Courier New', Courier, monospace;
+            background-color: #069d9f;
+            background-image: linear-gradient(to bottom, #101010, #0a2441, #2653a7, #069d9f);
+            background-attachment: fixed;
+        }
 
-            .black-box {
-                background-color: #10101080;
-                margin: calc(var(--custom-padding) / 1.5) auto;
-                width: 75%;
-                border-radius: var(--custom-padding);
-                padding: var(--custom-padding);
-            }
+        .black-box {
+            background-color: #10101080;
+            margin: calc(var(--custom-padding) / 1.5) auto;
+            width: 75%;
+            border-radius: var(--custom-padding);
+            padding: var(--custom-padding);
+        }
 
-            .black-box:nth-child(2) h1::after {
-                content: " =)";
-                color: rgb(248, 199, 24);
-                font-style: italic;
-            }
+        .black-box:nth-child(2) h1::after {
+            content: " =)";
+            color: rgb(248, 199, 24);
+            font-style: italic;
+        }
 
-            p {
-                text-align: justify;
-                text-overflow: ellipsis;
-                text-indent: calc(var(--custom-padding) / 2);
-            }
+        p {
+            text-align: justify;
+            text-overflow: ellipsis;
+            text-indent: calc(var(--custom-padding) / 2);
+        }
 
-            a {
-                transition-duration: 0.5s;
-                transition-timing-function: ease-in-out;
-            }
+        a {
+            transition-duration: 0.5s;
+            transition-timing-function: ease-in-out;
+        }
 
-            a:link, a:visited {
-                text-decoration: none;
-                color: rgb(143, 191, 233);
-            }
+        a:link, a:visited {
+            text-decoration: none;
+            color: rgb(143, 191, 233);
+        }
 
-            a:hover, a:active {
-                color: rgb(255, 102, 102);
-            }
+        a:hover, a:active {
+            color: rgb(255, 102, 102);
+        }
 
-            h1 {
-                text-align: center;
-            }
+        h1 {
+            text-align: center;
+        }
 
-            .black-box h1 {
-                margin-bottom: var(--custom-padding);
-            }
+        .black-box h1 {
+            margin-bottom: var(--custom-padding);
+        }
 
-            header {
-                --header-font-size: 24px;
-                font-family: Handwriting, cursive;
-                font-size: var(--header-font-size);
-                color: rgb(213, 242, 234);
-            }        
-            
-            header > * > b {
-                color: rgb(248, 199, 24);
-            }
-            
-            header h1 {
-                font-size: calc(var(--header-font-size) * 1.25);
-                font-weight: normal;
-            }
+        header {
+            --header-font-size: 24px;
+            font-family: Handwriting, cursive;
+            font-size: var(--header-font-size);
+            color: rgb(213, 242, 234);
+        }
 
-            footer, footer p {
-                text-align: center;
-                text-indent: 0px;
-            }
+        header > * > b {
+            color: rgb(248, 199, 24);
+        }
 
-            table, th, td {
-                border-collapse: collapse;
-                padding: calc(var(--custom-padding) / 4);
-                border: 2px solid #f4f4f4;
-                min-width: 80%;
-            }
-            
-            #previous-shots-table tr:nth-child(2n) > td {
-                background-color: #4d515680;
-            }
+        header h1 {
+            font-size: calc(var(--header-font-size) * 1.25);
+            font-weight: normal;
+        }
 
-            #graph {
-                text-align: center;
-                mix-blend-mode: screen;
-                cursor: crosshair;
-                min-width: 30%;
-                max-width: fit-content;
-            }
+        footer, footer p {
+            text-align: center;
+            text-indent: 0px;
+        }
 
-            select, input[type="text"], input[type="password"] {
-                border: 2px solid #f4f4f4;
-                background-color: #10101080;
-                background-image: none;
-                padding: 8px 16px;
-                color: inherit;
-                font-family: inherit;
-            }
+        table, th, td {
+            border-collapse: collapse;
+            padding: calc(var(--custom-padding) / 4);
+            border: 2px solid #f4f4f4;
+            min-width: 80%;
+        }
 
-            /* Custom checkbox */
-            input[type="checkbox"] {
-                --chkbox-size: 20px;
-                appearance: none;
-                margin: 0 16px 0 0;
-                color: #f4f4f4;
-                background-color: #10101080;
-                width: var(--chkbox-size);
-                height: var(--chkbox-size);
-                border: 2px solid #f4f4f4;
-                border-radius: 2px;
-                box-shadow: none;
-                transform: translateY(3px);
-                transition-duration: 0.2s;
-                transition-timing-function: ease-in-out;
-            }
+        #shooting-gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-            .custom-checkbox + .custom-checkbox {
-                margin-left: calc(var(--custom-padding) / 2);
-            }
+        #placeholder-row {
+            text-align: center;
+            font-style: italic;
+        }
 
-            input[type="checkbox"]:checked {
-                background-color: #94bc0e;
-                box-shadow: 0 0 10px #94bc0e;
-            }
+        #previous-shots-table tr:nth-child(2n) > td {
+            background-color: #4d515680;
+        }
 
-            button, input[type="submit"], input[type="button"] {
-                background-color: #0a2441;
-                border: 2px solid #f4f4f4;
-                padding: calc(var(--custom-padding) / 4);
-                border-radius: var(--custom-padding);
-                font-family: inherit;
-                font-size: inherit;
-                color: inherit;
-                transition-duration: 314.159265358979323ms;
-                transition-timing-function: ease-in-out;
-            }
+        .crossed-out {
+            text-decoration: line-through;
+            font-style: italic;
+        }
 
-            button:hover, input[type="submit"]:hover, input[type="button"]:hover {
-                background-color: rgb(214, 0, 30);
-            }
+        #graph {
+            text-align: center;
+            mix-blend-mode: screen;
+            cursor: crosshair;
+            min-width: 30%;
+            max-width: fit-content;
+        }
 
-            #error-msg {
-                color: rgb(255, 102, 102);
-                font-size: smaller;
-                font-style: italic;
-                opacity: 0%;
-            }
-        </style>
-        <link rel="icon" href="favicon.png"/>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="js/error_display.js"></script>
-        <script type="text/javascript" src="js/validate.js"></script>
-        <script type="text/javascript" src="js/submit.js"></script>
-    </head>
-    <body>
-        <header class="black-box">
-            <h1>Лабораторная работа No. 1 по дисциплине &laquo;Веб-программирование&raquo;</h1>
-            <p>
-                <b>Выполнил</b>: студент Чайкин Вадим Константинович
-            </p>
-            <ul>
-                <li><i>#322864</i></li>
-                <li>группа <b>P3224</b></li>
-                <li>вариант <b>265464</b></li>
-            </ul>
-            <p>
-                <b>Принял</b>: преподаватель Кулинич Ярослав <a title="здесь должна была быть шутка про &laquo;Люк, я твой отец&raquo;, но её не будет">Вадим</a>ович
-            </p>
-        </header>
-        <div class="black-box">
-            <h1>Форма для <s>выбора точки</s> выстрела</h1>
-            <img id="graph" src="images/graph.png" alt="График, на котором отображена область, в которую может попасть или не попасть точка."/>
-            <form method="get">
-                <p>
-                    <label for="x">X:
-                        <select name="x">
-                            <option value="-4">-4</option>
-                            <option value="-3">-3</option>
-                            <option value="-2">-2</option>
-                            <option value="-1">-1</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </label>
-                </p>
+        select, input[type="text"], input[type="password"] {
+            border: 2px solid #f4f4f4;
+            background-color: #10101080;
+            background-image: none;
+            padding: 8px 16px;
+            color: inherit;
+            font-family: inherit;
+        }
 
-                <p>
-                    <label for="y">Y:
-                        <input type="text" name="y" placeholder="(-5..3), не включая границы" maxlength="15" width="30%" required/>
-                    </label>
-                </p>
+        /* Custom checkbox */
+        input[type="checkbox"] {
+            --chkbox-size: 20px;
+            appearance: none;
+            margin: 0 16px 0 0;
+            color: #f4f4f4;
+            background-color: #10101080;
+            width: var(--chkbox-size);
+            height: var(--chkbox-size);
+            border: 2px solid #f4f4f4;
+            border-radius: 2px;
+            box-shadow: none;
+            transform: translateY(3px);
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in-out;
+        }
 
-                <p>
-                    <label for="r">R:
-                        <label class="custom-checkbox"><input type="checkbox" name="r" value="1"/>1</label>
-                        <label class="custom-checkbox"><input type="checkbox" name="r" value="2"/>2</label>
-                        <label class="custom-checkbox"><input type="checkbox" name="r" value="3"/>3</label>
-                        <label class="custom-checkbox"><input type="checkbox" name="r" value="4"/>4</label>
-                        <label class="custom-checkbox"><input type="checkbox" name="r" value="5"/>5</label>
-                    </label>
-                </p>
-                <p id="error-msg">_</p>
-                <input type="button" value="Выстрелить" onclick="submitData();"/>
-                <input type="button" value="Очистить результаты" onclick="cleanData();"/>
-            </form>
-        </div>
-        <div class="black-box" id="previous-shots-box" hidden>
-            <h1>Предыдущие результаты</h1>
-            <table id="previous-shots-table">
-                <tr>
-                    <th><i>X</i></th>
-                    <th><i>Y</i></th>
-                    <th><i>R</i></th>
-                    <th>Результат</th>
-                    <th>Дата и время выстрела</th>
-                    <th>Время выполнения, с</th>
-                </tr>
-            </table>
-        </div>
-        <div class="black-box">
-            <h1>Задание лабораторной работы</h1>
-            <p>Разработать PHP-скрипт, определяющий попадание точки на координатной плоскости в заданную область, и создать HTML-страницу, которая формирует данные для отправки их на обработку этому скрипту.</p>
-            <p>Параметр R и координаты точки должны передаваться скрипту посредством HTTP-запроса. Скрипт должен выполнять валидацию данных и возвращать HTML-страницу с таблицей, 
-                содержащей полученные параметры и результат вычислений - факт попадания или непопадания точки в область. Предыдущие результаты должны сохраняться между запросами и отображаться в таблице.</p>
-            <p>Кроме того, ответ должен содержать данные о текущем времени и времени работы скрипта.</p>
-            <p><b>Разработанная HTML-страница должна удовлетворять следующим требованиям</b>:</p>
-            <ul>
-                <li>Для расположения текстовых и графических элементов необходимо использовать блочную верстку.</li>
-                <li>Данные формы должны передаваться на обработку посредством 
-                    <a title="Гет — один из жанров фанфикшена, используемый на «Книге фанфиков». По определению ресурса: — в центре истории романтические и/или сексуальные отношения между мужчиной и женщиной.">
-                        GET
-                    </a>-запроса.</li>
-                <li>Таблицы стилей должны располагаться в самом веб-документе.</li>
-                <li>При работе с CSS должно быть продемонстрировано использование селекторов дочерних элементов, селекторов атрибутов, селекторов псевдоклассов, селекторов элементов,
-                    а также такие свойства стилей CSS, как наследование и каскадирование.</li>
-                <li>HTML-страница должна иметь "шапку", содержащую ФИО студента, номер группы и номер варианта. При оформлении шапки необходимо явным образом задать 
-                    <span style="font-family: Handwriting, cursive;">шрифт</span> (cursive), его 
-                    <span style="color: rgb(213, 242, 234);">цвет</span> и 
-                    <span style="font-size: 24px;">размер</span> в каскадной таблице стилей.</li>
-                <li>Отступы элементов ввода должны задаваться в пикселях.</li>
-                <li>Страница должна содержать сценарий на языке 
-                    <a onclick="alert('I am the most cringeworthy language!')" 
-                        title="Кринжовый язык, который связан с Java только названием и попытками в ООП" 
-                        href="https://ru.wikipedia.org/wiki/JavaScript">JavaScript</a>,
-                    осуществляющий валидацию значений, вводимых пользователем в поля формы. 
-                    Любые некорректные значения (например, буквы в координатах точки или отрицательный радиус) должны блокироваться.</li>
-            </ul>  
-        </div>
-        <footer class="black-box">
-            <p title="или научно-образовательная корпорация, ну, крч, как захотите">Федеральное государственное автономное образовательное учреждение высшего образования
-                «Национальный исследовательский университет ИТМО»</p>
-            <img src="https://itmo.ru/file/pages/213/logo_osnovnoy_russkiy_belyy.png" title="|/iTMO" width="20%"/>
-            <p>Санкт-Петербург, 2023</p>
-        </footer>
-    </body>
+        label[for="y"] {
+            margin: var(--custom-padding);
+        }
+
+        .custom-checkbox + .custom-checkbox {
+            margin-left: calc(var(--custom-padding) / 2);
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: #94bc0e;
+            box-shadow: 0 0 10px #94bc0e;
+        }
+
+        button, input[type="submit"], input[type="button"] {
+            background-color: #0a2441;
+            border: 2px solid #f4f4f4;
+            padding: calc(var(--custom-padding) / 4);
+            border-radius: var(--custom-padding);
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+            transition-duration: 314.159265358979323ms;
+            transition-timing-function: ease-in-out;
+        }
+
+        button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: rgb(214, 0, 30);
+        }
+
+        #error-msg {
+            color: rgb(255, 102, 102);
+            font-size: smaller;
+            font-style: italic;
+            opacity: 0%;
+        }
+    </style>
+    <link href="favicon.png" rel="icon"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/storage.js" type="text/javascript"></script>
+    <script src="js/validate.js" type="text/javascript"></script>
+    <script src="js/submit.js" type="text/javascript"></script>
+</head>
+<body>
+<header class="black-box">
+    <h1>Лабораторная работа No. 1 по дисциплине &laquo;Веб-программирование&raquo;</h1>
+    <p>
+        <b>Выполнил</b>: студент Чайкин Вадим Константинович
+    </p>
+    <ul>
+        <li><i>#322864</i></li>
+        <li>группа <b>P3224</b></li>
+        <li>вариант <b>265464</b></li>
+    </ul>
+    <p>
+        <b>Принял</b>: преподаватель Кулинич Ярослав <a
+            title="здесь должна была быть шутка про &laquo;Люк, я твой отец&raquo;, но её не будет">Вадим</a>ович
+    </p>
+</header>
+<div class="black-box" id="shooting-gallery">
+    <h1><span class="crossed-out">Форма для выбора точки</span> Тир</h1>
+    <img alt="График, на котором отображена область, в которую может попасть или не попасть точка." id="graph"
+         src="images/graph.png"/>
+    <form method="get">
+        <p>
+            <label for="x">X:
+                <select id="x" name="x">
+                    <option value="-4">-4</option>
+                    <option value="-3">-3</option>
+                    <option value="-2">-2</option>
+                    <option value="-1">-1</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </label>
+            <label for="y">Y:
+                <input id="y" maxlength="15" name="y" placeholder="(-5..3), не включая границы" required type="text"
+                       width="30%"/>
+            </label>
+        </p>
+
+        <p>
+            <label for="r">R:
+                <label class="custom-checkbox"><input id="r" name="r" type="checkbox" value="1"/>1</label>
+                <label class="custom-checkbox"><input name="r" type="checkbox" value="2"/>2</label>
+                <label class="custom-checkbox"><input name="r" type="checkbox" value="3"/>3</label>
+                <label class="custom-checkbox"><input name="r" type="checkbox" value="4"/>4</label>
+                <label class="custom-checkbox"><input name="r" type="checkbox" value="5"/>5</label>
+            </label>
+        </p>
+        <p id="error-msg">_</p>
+        <p style="display: inline-block;">
+            <input onclick="submitData();" type="button" value="Выстрелить"/>
+            <input onclick="cleanData();" type="button" value="Очистить результаты"/>
+        </p>
+    </form>
+</div>
+<div class="black-box" id="previous-shots-box">
+    <h1>Предыдущие результаты</h1>
+    <table id="previous-shots-table">
+        <tr>
+            <th><i>X</i></th>
+            <th><i>Y</i></th>
+            <th><i>R</i></th>
+            <th>Результат</th>
+            <th>Дата и время выстрела</th>
+            <th>Время выполнения, с</th>
+        </tr>
+    </table>
+</div>
+<div class="black-box">
+    <h1>Задание лабораторной работы</h1>
+    <p>Разработать PHP-скрипт, определяющий попадание точки на координатной плоскости в заданную область, и создать
+        HTML-страницу, которая формирует данные для отправки их на обработку этому скрипту.</p>
+    <p>Параметр R и координаты точки должны передаваться скрипту посредством HTTP-запроса. Скрипт должен выполнять
+        валидацию данных и возвращать HTML-страницу с таблицей,
+        содержащей полученные параметры и результат вычислений - факт попадания или непопадания точки в область.
+        Предыдущие результаты должны сохраняться между запросами и отображаться в таблице.</p>
+    <p>Кроме того, ответ должен содержать данные о текущем времени и времени работы скрипта.</p>
+    <p><b>Разработанная HTML-страница должна удовлетворять следующим требованиям</b>:</p>
+    <ul>
+        <li>Для расположения текстовых и графических элементов необходимо использовать блочную верстку.</li>
+        <li>Данные формы должны передаваться на обработку посредством
+            <a title="Гет — один из жанров фанфикшена, используемый на «Книге фанфиков». По определению ресурса: — в центре истории романтические и/или сексуальные отношения между мужчиной и женщиной.">
+                GET
+            </a>-запроса.
+        </li>
+        <li>Таблицы стилей должны располагаться в самом веб-документе.</li>
+        <li>При работе с CSS должно быть продемонстрировано использование селекторов дочерних элементов, селекторов
+            атрибутов, селекторов псевдоклассов, селекторов элементов,
+            а также такие свойства стилей CSS, как наследование и каскадирование.
+        </li>
+        <li>HTML-страница должна иметь "шапку", содержащую ФИО студента, номер группы и номер варианта. При оформлении
+            шапки необходимо явным образом задать
+            <span style="font-family: Handwriting, cursive;">шрифт</span> (cursive), его
+            <span style="color: rgb(213, 242, 234);">цвет</span> и
+            <span style="font-size: 24px;">размер</span> в каскадной таблице стилей.
+        </li>
+        <li>Отступы элементов ввода должны задаваться в пикселях.</li>
+        <li>Страница должна содержать сценарий на языке
+            <a href="https://ru.wikipedia.org/wiki/JavaScript"
+               onclick="alert('I am the most cringeworthy language!')"
+               title="Кринжовый язык, который связан с Java только названием и попытками в ООП">JavaScript</a>,
+            осуществляющий валидацию значений, вводимых пользователем в поля формы.
+            Любые некорректные значения (например, буквы в координатах точки или отрицательный радиус) должны
+            блокироваться.
+        </li>
+    </ul>
+</div>
+<footer class="black-box">
+    <p title="или научно-образовательная корпорация, ну, крч, как захотите">Федеральное государственное автономное
+        образовательное учреждение высшего образования
+        «Национальный исследовательский университет ИТМО»</p>
+    <img src="https://itmo.ru/file/pages/213/logo_osnovnoy_russkiy_belyy.png" title="|/iTMO" width="20%"/>
+    <p>Санкт-Петербург, 2023</p>
+</footer>
+</body>
 </html>
