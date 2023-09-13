@@ -12,7 +12,6 @@ function valuesOfR() {
     const rBoxes = document.getElementsByName('r')
     rBoxes.forEach((element) => {
         if (element.checked) {
-            console.log(element)
             rValues.push(element.value)
         }
     })
@@ -23,7 +22,6 @@ const MIN_Y = -5
 const MAX_Y = 3
 
 function validate(x, y, r) {
-    console.log("Валидация x: " + x + " y: " + y + " r: " + r)
     let error_msg = ""
 
     let yNum = parseFloat(y)

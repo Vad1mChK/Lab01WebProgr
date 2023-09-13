@@ -14,15 +14,15 @@ function submitShot(x, y, r) {
     }
 
     $.ajax({
-        url: 'handler.php',
+        url: 'adder.php',
         method: 'GET',
         data: {x: x, y: y, r: r, zone: getZoneOffsetMinutes()},
         dataType: 'json',
         success: function (data) {
-            updateTable(data)
+            addRowToTable(getTable(), data.newShot)
         },
-        error: function () {
-            alert("При обработке запроса на сервере произошла ошибка.")
+        error: function (jqXHR, exception) {
+            
         }
     })
 }
@@ -30,18 +30,13 @@ function submitShot(x, y, r) {
 function cleanData() {
     $.ajax({
         url: 'cleaner.php',
-        method: 'HEAD',
+        method: 'DELETE',
         dataType: 'json',
         success: function () {
-            const table = $('#previous-shots-table')
-
-            // Clear previous rows to replace with updated data.
-            // Assuming the table has a header, so we don't remove the first row.
-            table.find('tr:not(:first)').remove()
-            addPlaceholderRow(table)
+            cleanTable(getTable())
         },
-        error: function () {
-            alert("При обработке запроса на сервере произошла ошибка.")
+        error: function (jqXHR, exception) {
+
         }
     })
 }
@@ -52,10 +47,10 @@ function fetchData() {
         method: 'GET',
         dataType: 'json',
         success: function (data) {
-            updateTable(data)
+            updateTable(getTable(), data.shots)
         },
-        error: function () {
-            alert("При обработке запроса на сервере произошла ошибка.")
+        error: function (jqXHR, exception) {
+
         }
     })
 }
@@ -67,22 +62,10 @@ function addPlaceholderRow(table) {
     cell.attr('colspan', 6)
 }
 
-function updateTable(data) {
-    const table = $('#previous-shots-table')
-
-    // Clear previous rows to replace with updated data.
-    // Assuming the table has a header, so we don't remove the first row.
-    table.find('tr:not(:first)').remove()
-
-    // If there are no shots, insert the placeholder row.
-    if (data.shots.length === 0) {
-        addPlaceholderRow(table)
-        return
-    }
-
-    // Append all shots to the table
-    data.shots.forEach(shot => {
-        const row = $('<tr>').appendTo(table);
+function addRowToTable(table, shot) {
+    const row = $('<tr>').appendTo(table);
+    if(shot) {
+        table.find("#placeholder-row").remove();
         ['x', 'y', 'r', 'hit', 'datetime', 'timeElapsed'].forEach(key => {
             if (key == 'hit') {
                 $('<td>').text(shot[key] ? "попал" : "мимо").appendTo(row)
@@ -90,11 +73,28 @@ function updateTable(data) {
                 $('<td>').text(shot[key]).appendTo(row)
             }
         })
+    }
+}
+
+function cleanTable(table) {
+    table.find('tr:not(:first)').remove()
+    addPlaceholderRow(table)
+}
+
+function updateTable(table, shots) {
+    cleanTable(table)
+
+    shots.forEach(shot => {
+        addRowToTable(table, shot)
     })
 }
 
 function getZoneOffsetMinutes() {
     return -(new Date().getTimezoneOffset())
+}
+
+function getTable() {
+    return $('#previous-shots-table')
 }
 
 // Trigger the function once the page is fully loaded
