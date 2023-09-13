@@ -21,9 +21,7 @@ function submitShot(x, y, r) {
         success: function (data) {
             addRowToTable(getTable(), data.newShot)
         },
-        error: function (jqXHR, exception) {
-            
-        }
+        error: function () {}
     })
 }
 
@@ -35,9 +33,7 @@ function cleanData() {
         success: function () {
             cleanTable(getTable())
         },
-        error: function (jqXHR, exception) {
-
-        }
+        error: function () {}
     })
 }
 
@@ -49,9 +45,7 @@ function fetchData() {
         success: function (data) {
             updateTable(getTable(), data.shots)
         },
-        error: function (jqXHR, exception) {
-
-        }
+        error: function () {}
     })
 }
 
