@@ -28,7 +28,8 @@ function submitShot(x, y, r) {
 function cleanData() {
     $.ajax({
         url: 'cleaner.php',
-        method: 'DELETE',
+        method: 'POST',
+        data: { action: 'delete' },
         dataType: 'json',
         success: function () {
             cleanTable(getTable())

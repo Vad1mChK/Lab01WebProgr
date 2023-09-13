@@ -39,6 +39,7 @@
 
         * {
             --custom-padding: 64px;
+            --PI: 3.14159264358979323;
         }
 
         body {
@@ -194,7 +195,7 @@
             font-family: inherit;
             font-size: inherit;
             color: inherit;
-            transition-duration: 314.159265358979323ms;
+            transition-duration: calc(var(--PI) * 100ms);
             transition-timing-function: ease-in-out;
         }
 

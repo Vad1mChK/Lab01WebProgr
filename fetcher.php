@@ -8,7 +8,6 @@ if($_SERVER['REQUEST_METHOD'] != 'GET') {
 
 $shots = [];
 if(!isset($_SESSION["shots"])) {
-    $shots = [];
     $_SESSION["shots"] = $shots;
 } else {
     $shots = $_SESSION["shots"];
