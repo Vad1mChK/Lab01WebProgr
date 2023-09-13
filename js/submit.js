@@ -1,6 +1,6 @@
 function submitData() {
-    const x = $('select[name="x"]').val()
-    const y = $('input[name="y"]').val()
+    const x = document.querySelector('select[name="x"]').value
+    const y = document.querySelector('input[name="y"]').value
     const rValues = valuesOfR()
 
     rValues.forEach((r) => {
@@ -13,66 +13,66 @@ function submitShot(x, y, r) {
         return
     }
 
-    $.ajax({
-        url: 'adder.php',
-        method: 'GET',
-        data: {x: x, y: y, r: r, zone: getZoneOffsetMinutes()},
-        dataType: 'json',
-        success: function (data) {
-            addRowToTable(getTable(), data.newShot)
-        },
-        error: function () {}
-    })
+    const xhr = new XMLHttpRequest()
+    xhr.open("GET", `adder.php?x=${x}&y=${y}&r=${r}&zone=${getZoneOffsetMinutes()}`, true)
+    xhr.responseType = 'json'
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            addRowToTable(getTable(), xhr.response.newShot)
+        }
+    }
+    xhr.send()
 }
 
 function cleanData() {
-    $.ajax({
-        url: 'cleaner.php',
-        method: 'POST',
-        data: { action: 'delete' },
-        dataType: 'json',
-        success: function () {
+    const xhr = new XMLHttpRequest()
+    xhr.open("POST", 'cleaner.php', true)
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    xhr.responseType = 'json'
+    xhr.onload = function() {
+        if (xhr.status === 200) {
             cleanTable(getTable())
-        },
-        error: function () {}
-    })
+        }
+    }
+    xhr.send('action=delete')
 }
 
 function fetchData() {
-    $.ajax({
-        url: 'fetcher.php',
-        method: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            updateTable(getTable(), data.shots)
-        },
-        error: function () {}
-    })
+    const xhr = new XMLHttpRequest()
+    xhr.open("GET", 'fetcher.php', true)
+    xhr.responseType = 'json'
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            updateTable(getTable(), xhr.response.shots)
+        }
+    }
+    xhr.send()
 }
 
 // Function to handle adding the placeholder
 function addPlaceholderRow(table) {
-    const row = $('<tr>').appendTo(table)
-    const cell = $('<td>').attr('id', 'placeholder-row').text('Не сделано ни одного выстрела.').appendTo(row)
-    cell.attr('colspan', 6)
+    const row = table.insertRow()
+    const cell = row.insertCell(0)
+    cell.setAttribute('id', 'placeholder-row')
+    cell.setAttribute('colspan', '6')
+    cell.textContent = 'Не сделано ни одного выстрела.'
 }
 
 function addRowToTable(table, shot) {
-    const row = $('<tr>').appendTo(table);
-    if(shot) {
-        table.find("#placeholder-row").remove();
+    const row = table.insertRow()
+    if (shot) {
+        table.querySelector("#placeholder-row")?.remove();
         ['x', 'y', 'r', 'hit', 'datetime', 'timeElapsed'].forEach(key => {
-            if (key == 'hit') {
-                $('<td>').text(shot[key] ? "попал" : "мимо").appendTo(row)
-            } else {
-                $('<td>').text(shot[key]).appendTo(row)
-            }
-        })
+            const cell = row.insertCell()
+            cell.textContent = key === 'hit' ? (shot[key] ? "попал" : "мимо") : shot[key]
+        });
     }
 }
 
 function cleanTable(table) {
-    table.find('tr:not(:first)').remove()
+    while (table.rows.length > 1) {
+        table.deleteRow(1)
+    }
     addPlaceholderRow(table)
 }
 
@@ -89,8 +89,10 @@ function getZoneOffsetMinutes() {
 }
 
 function getTable() {
-    return $('#previous-shots-table')
+    return document.getElementById('previous-shots-table')
 }
 
 // Trigger the function once the page is fully loaded
-$(document).ready(fetchData)
+document.addEventListener("DOMContentLoaded", () => {
+    fetchData();
+});

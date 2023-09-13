@@ -57,5 +57,3 @@ function validate(x, y, r) {
 function isBlank(str) {
     return str.replace(/\s/g, '') === ''
 }
-
-console.log(valuesOfR())
