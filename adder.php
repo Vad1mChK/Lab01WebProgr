@@ -70,6 +70,9 @@ function isDotWithinArea($x, $y, $r) {
         || ($x >= 0 && $y <= 0 && $x*$x + $y*$y <= $r*$r/4); // Нижний правый квадрант
 }
 
+/**
+ * Получаем текущую дату, зависящую от зоны
+ */
 function currentDate($zone) {
     $zoneName = timezone_name_from_abbr("", $zone*60, false);
     date_default_timezone_set($zoneName);
@@ -77,8 +80,20 @@ function currentDate($zone) {
     return $date->format('d.m.Y, H:i:s') . "\n";
 }
 
+/**
+ * Проверяем, валидна ли зона (а именно оффсет в минутах)
+ */
 function isValidZone($zone) {
-    return ($zone % 60 == 0 && !in_array($zone, ['-120', '360', '660'])) || in_array($zone, ['-270', '330', '345']); 
+    $date = new DateTime('now');
+
+    $validZones = DateTimeZone::listIdentifiers();
+    foreach ($validZones as $validZone) {
+        $offsetSeconds = (new DateTimeZone($validZone))->getOffset($date);
+        if ($offsetSeconds == $zone * 60) {
+            return true;
+        }
+    }
+    return false; 
 }
 
 $errors = validateQuery($x, $y, $r, $zone);
