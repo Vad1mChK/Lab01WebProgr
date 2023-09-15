@@ -119,10 +119,12 @@ if (empty($errors)) {
 
     // Сохраняем массив в сессии
     $_SESSION["shots"] = $shots;
+
+    header("HTTP/1.0 201 Created");
     $response['newShot'] = $shot;
 
 } else {
-    header("HTTP/1.1 400 Bad Request");
+    header("HTTP/1.0 400 Bad Request");
     $response['errors'] = $errors;
 }
 

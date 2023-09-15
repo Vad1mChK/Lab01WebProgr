@@ -17,7 +17,7 @@ function submitShot(x, y, r) {
     xhr.open("GET", `adder.php?x=${x}&y=${y}&r=${r}&zone=${getZoneOffsetMinutes()}`, true)
     xhr.responseType = 'json'
     xhr.onload = function() {
-        if (xhr.status === 200) {
+        if (xhr.status === 201) {
             addRowToTable(getTable(), xhr.response.newShot)
         }
     }
