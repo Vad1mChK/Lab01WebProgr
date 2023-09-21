@@ -16,7 +16,7 @@ function submitShot(x, y, r) {
     const xhr = new XMLHttpRequest()
     xhr.open("GET", `adder.php?x=${x}&y=${y}&r=${r}&zone=${getZoneOffsetMinutes()}`, true)
     xhr.responseType = 'json'
-    xhr.onload = function() {
+    xhr.onload = function () {
         if (xhr.status === 201) {
             addRowToTable(getTable(), xhr.response.newShot)
         }
@@ -29,7 +29,7 @@ function cleanData() {
     xhr.open("POST", 'cleaner.php', true)
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
     xhr.responseType = 'json'
-    xhr.onload = function() {
+    xhr.onload = function () {
         if (xhr.status === 200) {
             cleanTable(getTable())
         }
@@ -41,7 +41,7 @@ function fetchData() {
     const xhr = new XMLHttpRequest()
     xhr.open("GET", 'fetcher.php', true)
     xhr.responseType = 'json'
-    xhr.onload = function() {
+    xhr.onload = function () {
         if (xhr.status === 200) {
             updateTable(getTable(), xhr.response.shots)
         }
