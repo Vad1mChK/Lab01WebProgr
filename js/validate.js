@@ -39,8 +39,6 @@ function validate(x, y, r) {
     } else if (+y <= MIN_Y || +y >= MAX_Y || y.startsWith(MIN_Y) || y.startsWith(MAX_Y)) {
         error_msg = "Значение координаты Y должно входить в диапазон (" + MIN_Y + ".." + MAX_Y + ") (не включая " +
             "граничные значения). Повторите попытку."
-    } else if (!countSelectedR()) {
-        error_msg = "Не выбрано ни одного значения R. Пожалуйста, выберите хотя бы одно одно и повторите попытку."
     }
 
     const msgElement = document.getElementById("error-msg")
@@ -54,6 +52,14 @@ function validate(x, y, r) {
     return error_msg
 }
 
+function toggleSubmitButton() {
+    const button = document.getElementById("submit-button")
+    if(countSelectedR()) {
+        button.disabled = false
+    } else {
+        button.disabled = true
+    }
+}
 
 function isBlank(str) {
     return str.replace(/\s/g, '') === ''

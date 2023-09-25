@@ -199,8 +199,12 @@
             transition-timing-function: ease-in-out;
         }
 
-        button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+        button:enabled:hover, input[type="submit"]:enabled:hover, input[type="button"]:enabled:hover {
             background-color: rgb(214, 0, 30);
+        }
+
+        #submit-button:disabled {
+            color: #f4f4f480;
         }
 
         #error-msg {
@@ -267,7 +271,7 @@
         </p>
         <p id="error-msg">_</p>
         <p style="display: inline-block;">
-            <input onclick="submitData();" type="button" value="Выстрелить"/>
+            <input onclick="submitData();" type="button" id="submit-button" value="Выстрелить"/>
             <input onclick="cleanData();" type="button" value="Очистить результаты"/>
         </p>
     </form>

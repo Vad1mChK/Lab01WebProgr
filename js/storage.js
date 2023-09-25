@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
 
-    const rValues = [...storedRValues]
+    rValues = [...valuesOfR()]
 
     // Listen for input events to store data
     document.getElementById('x').addEventListener('input', function () {
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementsByName('r').forEach((box) => {
         box.addEventListener('change', function () {
-            console.warn('Changed element: ' + box.value)
             const value = this.value
             if (box.checked) {
                 addElementIfNotPresent(rValues, value)

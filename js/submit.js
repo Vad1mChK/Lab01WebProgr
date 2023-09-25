@@ -95,4 +95,10 @@ function getTable() {
 // Trigger the function once the page is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
     fetchData();
+    toggleSubmitButton();
+    document.getElementsByName('r').forEach((box) => {
+        box.addEventListener('change', function () {
+            toggleSubmitButton()
+        })
+    })
 });
